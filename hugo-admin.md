@@ -20,22 +20,7 @@
 
 ### 系统数据流描述
 
-```flow
-st=>start: Start:>http://www.google.com[blank]
-e=>end:>http://www.google.com
-op1=>operation: My Operation
-sub1=>subroutine: My Subroutine
-cond=>condition: Yes
-or No?:>http://www.google.com
-io=>inputoutput: catch something...
-para=>parallel: parallel tasks
 
-st->op1->cond
-cond(yes)->io->e
-cond(no)->para
-para(path1, bottom)->sub1(right)->op1
-para(path2, top)->op1
-```
 
 ### 功能模块划分：
 
@@ -76,5 +61,10 @@ para(path2, top)->op1
 
 ### 和Hugo交互：
 
+由于目前的静态文件生成器大部分不支持增量编译过程， 大量文件时候， 会有比较长的延迟生产文件。这样导致Site 预览的体验很差。后台跑一个Hugo 提供预览功能。
 
+<!-- Title: Publish 
+User->Backend_Gin:file
+Backend_Gin->Hugo:build
+Backend_Gin->git: check in newly files -->
 
